@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -5,6 +6,26 @@ import { Section } from "./Section";
 import { socials } from "@/content/portfolio";
 
 export function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [sent, setSent] = useState(false);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const name = (data.get("name") as string).trim();
+    const email = (data.get("email") as string).trim();
+    const subject = (data.get("subject") as string).trim() || "Portfolio Enquiry";
+    const message = (data.get("message") as string).trim();
+
+    const body = encodeURIComponent(
+      `Hi Mohan,\n\n${message}\n\n— ${name}\n${email}`
+    );
+    const mailto = `mailto:mohankvsnsk@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    window.location.href = mailto;
+    setSent(true);
+    formRef.current?.reset();
+  }
+
   return (
     <Section
       id="contact"
@@ -12,46 +33,100 @@ export function Contact() {
       title="Let's build something intelligent"
       description="Always open to new opportunities, collaborations, and conversations about AI engineering, multi-agent systems, and production LLM architectures."
     >
-      <div className="grid gap-6 md:grid-cols-[1fr_minmax(0,360px)]">
+      <div className="grid gap-6 lg:grid-cols-[1fr_minmax(0,340px)]">
+        {/* Inline contact form */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
           className="glass-card relative overflow-hidden rounded-3xl p-7 md:p-10"
         >
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-400/10 via-transparent to-violet-400/10" />
           <div className="relative">
-            <h3 className="font-display text-2xl font-bold text-gradient md:text-3xl">
-              Ready to start a conversation?
+            <h3 className="font-display text-2xl font-bold text-gradient">
+              Send me a message
             </h3>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
-              For project enquiries, collaboration proposals, or just to chat
-              about agentic AI — head to the full contact page for the form, or
-              reach out directly via the channels on the right.
+            <p className="mt-2 text-sm text-muted-foreground">
+              Fill out the form and your email client will open with everything pre-filled.
             </p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Button asChild variant="gradient" size="lg">
-                <a href="/contact.html">
-                  <Send className="h-4 w-4" />
-                  Open full contact page
-                </a>
+            {sent && (
+              <p className="mt-4 rounded-xl border border-emerald-400/20 bg-emerald-400/5 px-4 py-3 text-sm text-emerald-300">
+                Your email client should have opened. Looking forward to connecting!
+              </p>
+            )}
+
+            <form ref={formRef} onSubmit={handleSubmit} className="mt-6 space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <label htmlFor="name" className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-sky-400/50 focus:bg-white/8"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="email" className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="your@email.com"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-sky-400/50 focus:bg-white/8"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="subject" className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                  Subject
+                </label>
+                <input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  placeholder="What's this about?"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-sky-400/50 focus:bg-white/8"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="message" className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  placeholder="Tell me about your project, opportunity, or idea..."
+                  className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-sky-400/50 focus:bg-white/8"
+                />
+              </div>
+
+              <Button type="submit" variant="gradient" size="lg" className="w-full sm:w-auto">
+                <Send className="h-4 w-4" />
+                Send Message
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full">
-                <a href="mailto:mohankvsnsk@gmail.com">
-                  Email me
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </Button>
-            </div>
+            </form>
           </div>
         </motion.div>
 
+        {/* Social links */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, delay: 0.05 }}
           className="flex flex-col gap-3"
         >

@@ -36,7 +36,7 @@ export function Nav() {
               {hero.name}
             </span>
             <span className="text-[11px] text-muted-foreground">
-              GenAI Engineer & ML Architect
+              AI Engineer & Architect
             </span>
           </span>
         </a>
@@ -60,7 +60,7 @@ export function Nav() {
             size="sm"
             className="hidden h-10 gap-2 rounded-full px-5 text-xs uppercase tracking-[0.15em] sm:inline-flex"
           >
-            <a href="#contact" aria-label="Get in touch">
+            <a href="/Mohan_Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open resume PDF">
               <FileText className="h-4 w-4" />
               Resume
             </a>

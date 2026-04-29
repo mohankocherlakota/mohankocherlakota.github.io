@@ -28,16 +28,34 @@ export function Experience() {
 
             <article className="glass-card glass-card-hover rounded-2xl p-6">
               <header className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-foreground">
-                    {role.title}
-                  </h3>
-                  <p className="mt-0.5 flex items-center gap-2 text-sm text-sky-300/90">
-                    <Briefcase className="h-3.5 w-3.5" />
-                    {role.company}
-                    <span className="text-muted-foreground/60">·</span>
-                    <span className="text-muted-foreground">{role.location}</span>
-                  </p>
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 ring-1 ring-inset ring-white/10 overflow-hidden">
+                    {role.logo ? (
+                      <img
+                        src={role.logo}
+                        alt={role.company}
+                        className="h-8 w-8 object-contain"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.style.display = "none";
+                          const parent = target.parentElement;
+                          if (parent) parent.dataset.fallback = "1";
+                        }}
+                      />
+                    ) : (
+                      <Briefcase className="h-4 w-4 text-muted-foreground" />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-semibold text-foreground">
+                      {role.title}
+                    </h3>
+                    <p className="mt-0.5 flex items-center gap-2 text-sm text-sky-300/90">
+                      {role.company}
+                      <span className="text-muted-foreground/60">·</span>
+                      <span className="text-muted-foreground">{role.location}</span>
+                    </p>
+                  </div>
                 </div>
                 <Badge
                   variant="outline"
