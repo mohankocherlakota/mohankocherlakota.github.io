@@ -113,7 +113,7 @@ export const experience: ExperienceRole[] = [
     company: "VesterAI",
     location: "Boston, MA",
     period: "Jan 2025 – Mar 2025",
-    logo: "/vesterai.png",
+    logo: "/vester.png",
     tags: ["LLM", "Research", "Multi-Agent"],
     bullets: [
       "Engineered an LLM-based multi-agent orchestration platform integrating PubMed and Wiley APIs — delivering curated, metadata-rich literature summaries that accelerated researchers' literature review.",
