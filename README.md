@@ -1,5 +1,7 @@
 ### Data Analyst
 
+[**Contact me →**](contact.html)
+
 ### Education
 Northeastern University-Master in Applied Machine Intelligence(Sep 2023-May 2025)
 GITAM University-B.Tech in Electronics & Communication Engineering(July 2020)
@@ -30,4 +32,9 @@ Senior Software Engineer @ Capgemini(June 2021- July 2023)
 ### PATENTS
 -	A Novel Method of Effective Sentiment Analysis System by Improved Relevance Vector Machine (International Patent)
 -	20-180 MHZ Frequency Band Electrically Tune Able Antenna for Radiation Immunity Testing
+
+---
+
+### Get in touch
+Have a project, role, or collaboration in mind? [**Visit the contact page →**](contact.html)
 
