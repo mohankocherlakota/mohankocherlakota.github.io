@@ -58,9 +58,9 @@ export function Nav() {
             asChild
             variant="gradient"
             size="sm"
-            className="hidden h-10 gap-2 rounded-full px-5 text-xs uppercase tracking-[0.15em] sm:inline-flex"
+            className="hidden h-10 gap-2 rounded-full px-5 text-xs uppercase tracking-[0.15em] opacity-60 pointer-events-none sm:inline-flex"
           >
-            <a href="/Mohan_Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open resume PDF">
+            <a href="#" aria-disabled="true" aria-label="Resume coming soon">
               <FileText className="h-4 w-4" />
               Resume
             </a>

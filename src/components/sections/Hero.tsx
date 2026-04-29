@@ -83,7 +83,7 @@ export function Hero() {
               <div className="relative">
                 <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-400 to-violet-400 opacity-60 blur-md" />
                 <img
-                  src="/image.png"
+                  src="/pic.jpg"
                   alt="Mohan Kocherlakota"
                   className="relative h-16 w-16 rounded-2xl border border-white/15 object-cover object-top"
                 />
