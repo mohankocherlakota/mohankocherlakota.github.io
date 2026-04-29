@@ -1,8 +1,28 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "./Section";
 import { experience } from "@/content/portfolio";
+
+function CompanyLogo({ src, alt }: { src?: string; alt: string }) {
+  const [failed, setFailed] = useState(false);
+  const showImage = src && !failed;
+  return (
+    <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 ring-1 ring-inset ring-white/10 overflow-hidden">
+      {showImage ? (
+        <img
+          src={src}
+          alt={alt}
+          className="h-8 w-8 object-contain"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <Briefcase className="h-4 w-4 text-muted-foreground" />
+      )}
+    </div>
+  );
+}
 
 export function Experience() {
   return (
@@ -29,23 +49,7 @@ export function Experience() {
             <article className="glass-card glass-card-hover rounded-2xl p-6">
               <header className="flex flex-wrap items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 ring-1 ring-inset ring-white/10 overflow-hidden">
-                    {role.logo ? (
-                      <img
-                        src={role.logo}
-                        alt={role.company}
-                        className="h-8 w-8 object-contain"
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          target.style.display = "none";
-                          const parent = target.parentElement;
-                          if (parent) parent.dataset.fallback = "1";
-                        }}
-                      />
-                    ) : (
-                      <Briefcase className="h-4 w-4 text-muted-foreground" />
-                    )}
-                  </div>
+                  <CompanyLogo src={role.logo} alt={role.company} />
                   <div>
                     <h3 className="font-display text-lg font-semibold text-foreground">
                       {role.title}
