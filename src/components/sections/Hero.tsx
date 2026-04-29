@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative scroll-mt-24 overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28"
+      className="relative scroll-mt-24 overflow-hidden pt-8 pb-10 md:pt-14 md:pb-14"
     >
       {/* Background ambient glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">

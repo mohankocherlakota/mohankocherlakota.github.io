@@ -23,7 +23,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn("scroll-mt-24 py-20 md:py-28", className)}
+      className={cn("scroll-mt-24 py-12 md:py-16", className)}
     >
       <div className={cn("mx-auto max-w-6xl px-6", innerClassName)}>
         {(eyebrow || title || description) && (

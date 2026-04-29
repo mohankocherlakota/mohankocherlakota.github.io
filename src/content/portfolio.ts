@@ -75,6 +75,7 @@ export type ExperienceRole = {
   period: string;
   tags: string[];
   bullets: string[];
+  logo?: string;
 };
 
 export const experience: ExperienceRole[] = [
@@ -83,6 +84,7 @@ export const experience: ExperienceRole[] = [
     company: "Altimetrik",
     location: "Boston, MA (Remote)",
     period: "Jan 2026 – Present",
+    logo: "/altimetrik.png",
     tags: ["GenAI", "Agentic", "MCP"],
     bullets: [
       "Leading an end-to-end AI enablement program training 300+ engineers — covering GenAI fundamentals, advanced RAG, multi-agent systems, SDLC integration, evaluation frameworks, and observability.",
@@ -96,6 +98,7 @@ export const experience: ExperienceRole[] = [
     company: "Altimetrik",
     location: "Boston, MA (Remote)",
     period: "Jul 2025 – Dec 2025",
+    logo: "/altimetrik.png",
     tags: ["RAG", "MCP", "LangChain"],
     bullets: [
       "Developed a multi-agent data pipeline using LangChain, OpenAI, Claude, and open-source models on cloud architectures — designed for portability and enterprise scale.",
@@ -110,6 +113,7 @@ export const experience: ExperienceRole[] = [
     company: "VesterAI",
     location: "Boston, MA",
     period: "Jan 2025 – Mar 2025",
+    logo: "/vesterai.png",
     tags: ["LLM", "Research", "Multi-Agent"],
     bullets: [
       "Engineered an LLM-based multi-agent orchestration platform integrating PubMed and Wiley APIs — delivering curated, metadata-rich literature summaries that accelerated researchers' literature review.",
@@ -121,6 +125,7 @@ export const experience: ExperienceRole[] = [
     company: "Traxidy Solutions",
     location: "Canada (Remote)",
     period: "Sep 2024 – Dec 2024",
+    logo: "/traxidy.png",
     tags: ["ML", "Analytics", "Flask"],
     bullets: [
       "Built a predictive analytics dashboard for project risk assessment using ML, improving decision-making accuracy by 40% over traditional methods.",
@@ -133,6 +138,7 @@ export const experience: ExperienceRole[] = [
     company: "Capgemini",
     location: "India",
     period: "Jun 2021 – Jul 2023",
+    logo: "/capgemini.png",
     tags: ["Engineering", "Azure", "Vue.js"],
     bullets: [
       "Led development and decommissioning of 25+ enterprise applications, implementing admin control systems and Azure DevOps CI/CD pipelines that cut release cycle time.",
