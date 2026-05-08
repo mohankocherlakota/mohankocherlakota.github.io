@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { PropsWithChildren, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -20,18 +20,47 @@ export function Section({
   innerClassName,
   children,
 }: SectionProps) {
+  const reduceMotion = useReducedMotion();
+  const sectionVariants = {
+    hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 30, scale: 0.985 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: reduceMotion
+        ? { duration: 0 }
+        : {
+            duration: 0.65,
+            ease: [0.22, 1, 0.36, 1],
+            staggerChildren: 0.08,
+            delayChildren: 0.08,
+          },
+    },
+  };
+  const itemVariants = {
+    hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: reduceMotion
+        ? { duration: 0 }
+        : { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
-    <section
+    <motion.section
       id={id}
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.18, margin: "-8% 0px -12% 0px" }}
       className={cn("scroll-mt-24 py-12 md:py-16", className)}
     >
       <div className={cn("mx-auto max-w-6xl px-6", innerClassName)}>
         {(eyebrow || title || description) && (
           <motion.header
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            variants={itemVariants}
             className="mb-12 max-w-2xl"
           >
             {eyebrow ? (
@@ -51,8 +80,8 @@ export function Section({
             ) : null}
           </motion.header>
         )}
-        {children}
+        <motion.div variants={itemVariants}>{children}</motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

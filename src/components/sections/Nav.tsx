@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navItems, hero } from "@/content/portfolio";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
-  const [light, setLight] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("portfolio-light", light);
-    return () => document.documentElement.classList.remove("portfolio-light");
-  }, [light]);
 
   return (
     <header
@@ -64,20 +58,7 @@ export function Nav() {
           {hero.initials}
         </a>
 
-        <button
-          type="button"
-          onClick={() => setLight((v) => !v)}
-          className="relative h-8 w-16 rounded-full bg-white/10 p-1 ring-1 ring-white/10 transition-opacity hover:opacity-80 md:h-10 md:w-20"
-          aria-label="Toggle theme"
-          aria-pressed={light}
-        >
-          <span
-            className={cn(
-              "block h-6 w-6 rounded-full bg-white shadow-lg transition-transform md:h-8 md:w-8",
-              light && "translate-x-8 md:translate-x-10",
-            )}
-          />
-        </button>
+        <div className="h-14 w-14 md:h-[72px] md:w-[72px]" aria-hidden="true" />
       </div>
     </header>
   );

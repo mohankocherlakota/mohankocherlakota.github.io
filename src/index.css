@@ -81,10 +81,6 @@
     background: #000;
   }
 
-  .portfolio-light body {
-    background: #fafafa;
-  }
-
   ::selection {
     background: rgba(255, 255, 255, 0.18);
     color: hsl(var(--foreground));
