@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Antic&family=Fira+Code:wght@700&family=Permanent+Marker&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -76,9 +78,11 @@
   body {
     @apply bg-background text-foreground antialiased font-sans;
     font-feature-settings: "cv11", "ss01", "ss03";
-    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 32px 32px;
-    background-attachment: fixed;
+    background: #000;
+  }
+
+  .portfolio-light body {
+    background: #fafafa;
   }
 
   ::selection {

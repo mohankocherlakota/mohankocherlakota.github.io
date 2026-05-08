@@ -48,7 +48,9 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
+        display: ["Fira Code", "ui-monospace", "SFMono-Regular", "monospace"],
+        caption: ["Antic", "Inter", "system-ui", "sans-serif"],
+        signature: ["Permanent Marker", "Brush Script MT", "cursive"],
       },
       keyframes: {
         "fade-up": {

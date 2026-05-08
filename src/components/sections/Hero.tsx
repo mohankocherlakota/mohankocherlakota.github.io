@@ -1,164 +1,107 @@
-import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { hero } from "@/content/portfolio";
+
+type BlurTextProps = {
+  text: string;
+  delay?: number;
+  by?: "letters" | "words";
+  className?: string;
+};
+
+function BlurText({ text, delay = 70, by = "letters", className = "" }: BlurTextProps) {
+  const [visible, setVisible] = useState(true);
+  const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    setVisible(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.2 },
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const segments = useMemo(
+    () => (by === "words" ? text.split(" ") : text.split("")),
+    [by, text],
+  );
+
+  return (
+    <p ref={ref} className={className} aria-label={text}>
+      {segments.map((segment, index) => (
+        <span
+          aria-hidden="true"
+          key={`${segment}-${index}`}
+          className="inline-block transition-all duration-500 ease-out"
+          style={{
+            filter: visible ? "blur(0)" : "blur(12px)",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(-18px)",
+            transitionDelay: `${index * delay}ms`,
+          }}
+        >
+          {segment}
+          {by === "words" && index < segments.length - 1 ? "\u00a0" : ""}
+        </span>
+      ))}
+    </p>
+  );
+}
 
 export function Hero() {
   return (
     <section
       id="home"
-      className="relative scroll-mt-24 overflow-hidden pt-8 pb-10 md:pt-14 md:pb-14"
+      className="relative flex min-h-screen scroll-mt-24 flex-col overflow-hidden bg-black text-white"
     >
-      {/* Background ambient glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-indigo-500/10 blur-[140px]" />
-        <div className="absolute top-32 right-[-10%] h-[420px] w-[420px] rounded-full bg-violet-500/10 blur-[120px]" />
-      </div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/20" />
 
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1.1fr_1fr] lg:items-start">
-        {/* Left column */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="space-y-7"
+      <main className="relative min-h-screen flex-1">
+        <div className="absolute left-1/2 top-[51%] w-full -translate-x-1/2 -translate-y-1/2 px-4">
+          <div className="relative mx-auto max-w-[1120px] text-center">
+            <BlurText
+              text="MOHAN"
+              delay={82}
+              className="font-display text-[clamp(3.15rem,16vw,13.25rem)] font-black uppercase leading-[0.76] tracking-normal text-[#d7ff00] drop-shadow-[0_0_28px_rgba(215,255,0,0.11)]"
+            />
+            <BlurText
+              text="KOCHER"
+              delay={82}
+              className="font-display text-[clamp(3.15rem,16vw,13.25rem)] font-black uppercase leading-[0.76] tracking-normal text-[#d7ff00] drop-shadow-[0_0_28px_rgba(215,255,0,0.11)]"
+            />
+
+            <div className="absolute left-1/2 top-1/2 z-10 h-[128px] w-[76px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-zinc-950 shadow-2xl ring-1 ring-black/50 transition-transform duration-300 hover:scale-105 sm:h-[156px] sm:w-[92px] md:h-[188px] md:w-[112px] lg:h-[222px] lg:w-[132px]">
+              <img
+                src="/pic.jpg"
+                alt={hero.name}
+                className="h-full w-full origin-top scale-[2.15] object-cover object-[58%_18%]"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-20 left-1/2 w-full -translate-x-1/2 px-6 text-center md:bottom-24 lg:bottom-32">
+          <BlurText
+            text="Building production-grade agentic AI systems."
+            by="words"
+            delay={140}
+            className="justify-center font-caption text-[15px] leading-relaxed text-neutral-500 transition-colors hover:text-white sm:text-lg md:text-xl"
+          />
+        </div>
+
+        <a
+          href="#about"
+          aria-label="Scroll to about section"
+          className="absolute bottom-7 left-1/2 -translate-x-1/2 text-neutral-500 transition-colors hover:text-white md:bottom-10"
         >
-          <Badge
-            variant="outline"
-            className="rounded-full px-4 py-1.5 text-xs font-medium tracking-wide"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-pulse-dot rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            <span className="text-foreground/80">{hero.availability}</span>
-          </Badge>
-
-          <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-            <span className="text-gradient block">{hero.headline.line1}</span>
-            <span className="text-gradient-brand block">
-              {hero.headline.line2}
-            </span>
-          </h1>
-
-          <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            {hero.tagline}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-3">
-            <Button asChild size="lg" variant="gradient">
-              <a href="#projects">
-                View Projects
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full">
-              <a href="#contact">
-                Get in Touch
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </Button>
-          </div>
-
-          <div className="flex flex-wrap gap-2 pt-2">
-            {hero.badges.map((badge) => (
-              <Badge key={badge} variant="secondary" className="rounded-full px-3 py-1">
-                {badge}
-              </Badge>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Right column — profile card */}
-        <motion.aside
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          className="relative"
-        >
-          <div className="absolute inset-0 rounded-[28px] bg-gradient-to-br from-sky-400/10 via-indigo-400/5 to-transparent blur-2xl" />
-          <div className="glass-card relative rounded-3xl p-7 md:p-8">
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-400 to-violet-400 opacity-60 blur-md" />
-                <img
-                  src="/image.png"
-                  alt="Mohan Kocherlakota"
-                  className="relative h-16 w-16 rounded-2xl border border-white/15 object-cover object-top"
-                />
-              </div>
-              <div className="min-w-0">
-                <h2 className="truncate font-display text-lg font-semibold text-foreground">
-                  {hero.name}
-                </h2>
-                <p className="text-sm text-sky-300/90">{hero.role}</p>
-                <p className="text-xs text-muted-foreground">
-                  {hero.company} · {hero.location}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-                Expertise
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {hero.expertise.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="gradient"
-                    className="rounded-full px-3 py-1 text-[11px]"
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-6 border-t border-white/5 pt-5">
-              <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-foreground">
-                <Sparkles className="h-4 w-4 text-sky-300" />
-                Key Achievements
-              </p>
-              <ul className="space-y-2">
-                {hero.achievements.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2 text-sm text-muted-foreground"
-                  >
-                    <ArrowRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sky-300/70" />
-                    <span className="leading-snug">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </motion.aside>
-      </div>
-
-      {/* Stats row */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-        className="mx-auto mt-14 grid max-w-6xl grid-cols-2 gap-4 px-6 md:grid-cols-4"
-      >
-        {hero.stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="glass-card glass-card-hover rounded-2xl p-5 text-center"
-          >
-            <p className="font-display text-3xl font-bold text-gradient md:text-4xl">
-              {stat.value}
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground md:text-sm">
-              {stat.label}
-            </p>
-          </div>
-        ))}
-      </motion.div>
+          <ChevronDown className="h-7 w-7 md:h-8 md:w-8" strokeWidth={2.4} />
+        </a>
+      </main>
     </section>
   );
 }
