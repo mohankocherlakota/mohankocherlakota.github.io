@@ -1,5 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { hero } from "@/content/portfolio";
 
@@ -71,9 +77,27 @@ function BlurText({
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const scrollOpacity = useSpring(useTransform(scrollYProgress, [0, 0.58, 1], [1, 0.88, 0.22]), {
+    stiffness: 120,
+    damping: 26,
+  });
+  const scrollScale = useSpring(useTransform(scrollYProgress, [0, 1], [1, 0.9]), {
+    stiffness: 120,
+    damping: 26,
+  });
+  const scrollY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -90]), {
+    stiffness: 120,
+    damping: 26,
+  });
 
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative flex min-h-screen scroll-mt-24 flex-col overflow-hidden bg-black text-white"
     >
@@ -82,10 +106,18 @@ export function Hero() {
       <main className="relative min-h-screen flex-1">
         <div className="absolute left-1/2 top-[47%] w-full -translate-x-1/2 -translate-y-1/2 px-4 sm:top-[49%]">
           <motion.div
+            style={
+              reduceMotion
+                ? undefined
+                : { opacity: scrollOpacity, scale: scrollScale, y: scrollY }
+            }
+            className="relative mx-auto max-w-[1120px]"
+          >
+          <motion.div
             initial={false}
             animate={reduceMotion ? undefined : { opacity: [0.92, 1], y: [10, 0], scale: [0.99, 1] }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto max-w-[1120px] text-center"
+            className="relative text-center"
           >
             <BlurText
               text="MOHAN"
@@ -108,6 +140,7 @@ export function Hero() {
                 />
               </motion.div>
             </div>
+          </motion.div>
           </motion.div>
         </div>
 

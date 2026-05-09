@@ -6,11 +6,13 @@ import { Experience } from "@/components/sections/Experience";
 import { Skills } from "@/components/sections/Skills";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
+import { SectionRail } from "@/components/sections/SectionRail";
 
 export default function App() {
   return (
     <div className="relative min-h-screen bg-background text-foreground">
       <Nav />
+      <SectionRail />
       <main>
         <Hero />
         <About />

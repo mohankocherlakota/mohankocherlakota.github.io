@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "./Section";
 import { projects } from "@/content/portfolio";
+import { cardReveal } from "@/lib/motion";
 
 export function Projects() {
   return (
@@ -13,19 +14,16 @@ export function Projects() {
       description="A selection of GenAI, RAG, and ML projects delivering measurable impact — from multi-agent orchestration to multimodal retrieval, audio AI, and predictive analytics."
     >
       <div className="grid gap-4 md:grid-cols-2">
-        {projects.map((project, i) => {
+        {projects.map((project) => {
           const Icon = project.icon;
           return (
             <motion.article
               key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: (i % 2) * 0.05 }}
+              variants={cardReveal}
               className="glass-card glass-card-hover group relative rounded-2xl p-6"
             >
               <div className="flex items-start gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/15 to-violet-400/15 text-sky-300 ring-1 ring-inset ring-white/10">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/15 to-violet-400/15 text-sky-300 ring-1 ring-inset ring-white/10 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">
                   <Icon className="h-5 w-5" />
                 </span>
                 <div className="min-w-0 flex-1">

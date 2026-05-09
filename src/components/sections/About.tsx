@@ -7,6 +7,7 @@ import {
   recognition,
   recognitionIcon as RecognitionIcon,
 } from "@/content/portfolio";
+import { cardReveal } from "@/lib/motion";
 
 export function About() {
   return (
@@ -17,18 +18,15 @@ export function About() {
       description="Hello, I'm Mohan — an AI Engineer specialising in multi-agent systems, RAG pipelines, and production-grade LLM architectures, with a Master's in Applied Machine Intelligence from Northeastern University. Currently at Altimetrik, I design and deliver agentic AI systems that operate at enterprise scale across the full SDLC lifecycle."
     >
       <div className="grid gap-4 md:grid-cols-3">
-        {corePrinciples.map((principle, i) => {
+        {corePrinciples.map((principle) => {
           const Icon = principle.icon;
           return (
             <motion.div
               key={principle.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="glass-card glass-card-hover rounded-2xl p-6"
+              variants={cardReveal}
+              className="glass-card glass-card-hover group rounded-2xl p-6"
             >
-              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-sky-400/15 to-violet-400/15 text-sky-300 ring-1 ring-inset ring-white/10">
+              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-sky-400/15 to-violet-400/15 text-sky-300 ring-1 ring-inset ring-white/10 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">
                 <Icon className="h-5 w-5" />
               </span>
               <h3 className="font-display text-lg font-semibold text-foreground">
@@ -44,11 +42,8 @@ export function About() {
 
       <div className="mt-10 grid gap-4 md:grid-cols-2">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
-          className="glass-card rounded-2xl p-6"
+          variants={cardReveal}
+          className="glass-card glass-card-hover rounded-2xl p-6"
         >
           <h3 className="mb-5 flex items-center gap-2 font-display text-lg font-semibold">
             <EducationIcon className="h-5 w-5 text-sky-300" />
@@ -71,11 +66,8 @@ export function About() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          className="glass-card rounded-2xl p-6"
+          variants={cardReveal}
+          className="glass-card glass-card-hover rounded-2xl p-6"
         >
           <h3 className="mb-5 flex items-center gap-2 font-display text-lg font-semibold">
             <RecognitionIcon className="h-5 w-5 text-amber-300" />

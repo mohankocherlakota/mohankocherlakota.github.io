@@ -4,6 +4,7 @@ import { ArrowUpRight, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "./Section";
 import { socials } from "@/content/portfolio";
+import { cardReveal } from "@/lib/motion";
 
 export function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -36,11 +37,8 @@ export function Contact() {
       <div className="grid gap-6 lg:grid-cols-[1fr_minmax(0,340px)]">
         {/* Inline contact form */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="glass-card relative overflow-hidden rounded-3xl p-7 md:p-10"
+          variants={cardReveal}
+          className="glass-card glass-card-hover relative overflow-hidden rounded-3xl p-7 md:p-10"
         >
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-400/10 via-transparent to-violet-400/10" />
           <div className="relative">
@@ -124,10 +122,7 @@ export function Contact() {
 
         {/* Social links */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
+          variants={cardReveal}
           className="flex flex-col gap-3"
         >
           {socials.map((social) => {

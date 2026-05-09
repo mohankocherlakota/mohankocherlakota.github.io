@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Section } from "./Section";
 import { skillCategories } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
+import { cardReveal } from "@/lib/motion";
 
 export function Skills() {
   return (
@@ -12,24 +13,21 @@ export function Skills() {
       description="Comprehensive technical expertise across the AI/ML stack — from research and prototyping to scalable production deployment."
     >
       <div className="grid gap-4 md:grid-cols-2">
-        {skillCategories.map((category, i) => {
+        {skillCategories.map((category) => {
           const Icon = category.icon;
           return (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.45, delay: (i % 2) * 0.05 }}
+              variants={cardReveal}
               className={cn(
-                "relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-6 backdrop-blur",
+                "glass-card-hover group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-6 backdrop-blur",
                 category.accent,
               )}
             >
               <div className="mb-4 flex items-center gap-3">
                 <span
                   className={cn(
-                    "flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-inset ring-white/10",
+                    "flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-inset ring-white/10 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105",
                     category.iconBg,
                   )}
                 >

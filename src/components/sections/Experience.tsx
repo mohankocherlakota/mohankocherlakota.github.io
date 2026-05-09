@@ -4,6 +4,7 @@ import { Briefcase } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "./Section";
 import { experience } from "@/content/portfolio";
+import { timelineReveal } from "@/lib/motion";
 
 function CompanyLogo({ src, alt }: { src?: string; alt: string }) {
   const [failed, setFailed] = useState(false);
@@ -33,20 +34,17 @@ export function Experience() {
       description="From legacy modernisation at Capgemini to ML risk analytics at Traxidy and multi-agent SDLC automation at Altimetrik — a continuous push from research into production."
     >
       <ol className="relative space-y-8 border-l border-white/10 pl-6 md:pl-10">
-        {experience.map((role, i) => (
+        {experience.map((role) => (
           <motion.li
             key={`${role.title}-${role.company}-${role.period}`}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: i * 0.05 }}
+            variants={timelineReveal}
             className="relative"
           >
             <span className="absolute -left-[calc(1.5rem+9px)] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-background ring-2 ring-sky-400/70 md:-left-[calc(2.5rem+9px)]">
               <span className="h-1.5 w-1.5 rounded-full bg-sky-300" />
             </span>
 
-            <article className="glass-card glass-card-hover rounded-2xl p-6">
+            <article className="glass-card glass-card-hover group rounded-2xl p-6">
               <header className="flex flex-wrap items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
                   <CompanyLogo src={role.logo} alt={role.company} />
