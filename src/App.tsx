@@ -12,9 +12,15 @@ import { SectionRail } from "@/components/sections/SectionRail";
 export default function App() {
   return (
     <div className="relative min-h-screen bg-background text-foreground">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-[#d7ff00] focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:font-bold focus:uppercase focus:tracking-wide focus:text-black"
+      >
+        Skip to content
+      </a>
       <Nav />
       <SectionRail />
-      <main>
+      <main id="main-content">
         <Hero />
         <AISystems />
         <Experience />

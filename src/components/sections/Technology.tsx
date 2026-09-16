@@ -66,7 +66,7 @@ export function Technology() {
                   <Icon className="h-5 w-5" />
                 </span>
                 {credential.href ? (
-                  <ExternalLink className="h-4 w-4 text-muted-foreground/50 transition-colors group-hover:text-foreground" />
+                  <ExternalLink className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />
                 ) : null}
               </div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
@@ -87,6 +87,7 @@ export function Technology() {
               href={credential.href}
               target="_blank"
               rel="noopener noreferrer"
+              className="rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               {card}
             </a>

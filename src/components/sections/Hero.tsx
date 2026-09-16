@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ElementType } from "react";
 import {
   motion,
   useReducedMotion,
@@ -15,6 +15,7 @@ type BlurTextProps = {
   by?: "letters" | "words";
   className?: string;
   reduceMotion?: boolean;
+  as?: "p" | "h1";
 };
 
 function BlurText({
@@ -23,9 +24,11 @@ function BlurText({
   by = "letters",
   className = "",
   reduceMotion = false,
+  as = "p",
 }: BlurTextProps) {
   const [visible, setVisible] = useState(true);
-  const ref = useRef<HTMLParagraphElement>(null);
+  const ref = useRef<HTMLElement>(null);
+  const Tag = as as ElementType;
 
   useEffect(() => {
     if (reduceMotion) {
@@ -54,7 +57,7 @@ function BlurText({
   );
 
   return (
-    <p ref={ref} className={className} aria-label={text}>
+    <Tag ref={ref} className={className} aria-label={text}>
       {segments.map((segment, index) => (
         <span
           aria-hidden="true"
@@ -71,7 +74,7 @@ function BlurText({
           {by === "words" && index < segments.length - 1 ? "\u00a0" : ""}
         </span>
       ))}
-    </p>
+    </Tag>
   );
 }
 
@@ -103,53 +106,47 @@ export function Hero() {
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/20" />
 
-      <main className="relative min-h-screen flex-1">
-        <div className="absolute left-1/2 top-[47%] w-full -translate-x-1/2 -translate-y-1/2 px-4 sm:top-[49%]">
+      <div className="relative flex min-h-screen flex-1 flex-col items-center justify-center px-5 pb-[min(7rem,12vh)] pt-[max(5.5rem,min(7rem,14vh))]">
+        <motion.div
+          style={
+            reduceMotion
+              ? undefined
+              : { opacity: scrollOpacity, scale: scrollScale, y: scrollY }
+          }
+          className="flex w-full max-w-[1120px] flex-col items-center text-center"
+        >
           <motion.div
-            style={
-              reduceMotion
-                ? undefined
-                : { opacity: scrollOpacity, scale: scrollScale, y: scrollY }
-            }
-            className="relative mx-auto max-w-[1120px]"
+            initial={false}
+            animate={reduceMotion ? undefined : { opacity: [0.9, 1], scale: [0.94, 1], y: [8, -4, 0] }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.26 }}
+            className="mb-[min(2rem,4vh)] h-[min(7rem,26vh)] w-[min(7rem,26vh)] overflow-hidden rounded-full bg-zinc-950 shadow-2xl ring-1 ring-white/15 transition-transform duration-300 hover:scale-105 sm:h-[min(9rem,26vh)] sm:w-[min(9rem,26vh)] md:h-[min(11rem,30vh)] md:w-[min(11rem,30vh)] lg:h-[min(13rem,32vh)] lg:w-[min(13rem,32vh)]"
           >
-            <motion.div
-              initial={false}
-              animate={reduceMotion ? undefined : { opacity: [0.92, 1], y: [10, 0], scale: [0.99, 1] }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="relative text-center"
-            >
-              <BlurText
-                text={hero.headline.line1}
-                delay={82}
-                reduceMotion={Boolean(reduceMotion)}
-                className="font-display text-[clamp(3.3rem,17vw,13.75rem)] font-black uppercase leading-[0.76] tracking-normal text-[#d7ff00] drop-shadow-[0_0_34px_rgba(215,255,0,0.18)]"
-              />
-
-              <div className="absolute left-1/2 top-1/2 z-10 h-[118px] w-[72px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-zinc-950 shadow-2xl ring-1 ring-black/50 transition-transform duration-300 hover:scale-105 sm:h-[150px] sm:w-[90px] md:h-[186px] md:w-[112px] lg:h-[216px] lg:w-[130px]">
-                <motion.div
-                  initial={false}
-                  animate={reduceMotion ? undefined : { opacity: [0.9, 1], scale: [0.94, 1], y: [8, -4, 0] }}
-                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.26 }}
-                  className="h-full w-full"
-                >
-                  <img
-                    src="/pic.jpg"
-                    alt={hero.name}
-                    className="h-full w-full origin-top scale-[2.25] object-cover object-[58%_16%]"
-                  />
-                </motion.div>
-              </div>
-            </motion.div>
+            <img
+              src="/pic.jpg"
+              alt={hero.name}
+              className="h-full w-full origin-[53%_16%] scale-[3.4] object-cover object-[58%_10%]"
+            />
           </motion.div>
-        </div>
 
-        <div className="absolute bottom-16 left-1/2 w-full -translate-x-1/2 px-6 text-center md:bottom-20 lg:bottom-24">
+          <motion.div
+            initial={false}
+            animate={reduceMotion ? undefined : { opacity: [0.92, 1], y: [10, 0], scale: [0.99, 1] }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <BlurText
+              as="h1"
+              text={hero.headline.line1}
+              delay={82}
+              reduceMotion={Boolean(reduceMotion)}
+              className="font-display text-[min(clamp(3rem,15vw,12rem),24vh)] font-black uppercase leading-[0.8] tracking-normal text-[#d7ff00] drop-shadow-[0_0_34px_rgba(215,255,0,0.18)]"
+            />
+          </motion.div>
+
           <motion.div
             initial={false}
             animate={reduceMotion ? undefined : { opacity: [0.82, 1], y: [10, 0] }}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.45 }}
-            className="mx-auto max-w-3xl"
+            className="mt-[min(2.25rem,5vh)] max-w-3xl"
           >
             <p className="mb-3 font-display text-lg font-semibold text-white sm:text-xl md:text-2xl">
               {hero.positioning}
@@ -159,18 +156,18 @@ export function Hero() {
               by="words"
               delay={40}
               reduceMotion={Boolean(reduceMotion)}
-              className="justify-center font-caption text-[15px] leading-relaxed text-neutral-500 transition-colors hover:text-white sm:text-lg md:text-xl"
+              className="justify-center font-caption text-base leading-relaxed text-neutral-300 transition-colors hover:text-white sm:text-lg md:text-xl"
             />
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.24em] text-[#d7ff00]/80 sm:text-sm">
+            <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.24em] text-[#d7ff00]/90 sm:text-sm">
               {hero.proof}
             </p>
           </motion.div>
-        </div>
+        </motion.div>
 
         <a
           href="#systems"
           aria-label="Scroll to selected AI systems"
-          className="absolute bottom-5 left-1/2 -translate-x-1/2 text-neutral-500 transition-colors hover:text-white md:bottom-7"
+          className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full p-2 text-neutral-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black md:bottom-7"
         >
           <motion.span
             initial={false}
@@ -181,7 +178,7 @@ export function Hero() {
             <ChevronDown className="h-7 w-7 md:h-8 md:w-8" strokeWidth={2.4} />
           </motion.span>
         </a>
-      </main>
+      </div>
     </section>
   );
 }

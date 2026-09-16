@@ -67,7 +67,7 @@ export function Contact() {
                     type="text"
                     required
                     placeholder="Your name"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-sky-400/50 focus:bg-white/8"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black focus:border-sky-400/50 focus:bg-white/8"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -80,7 +80,7 @@ export function Contact() {
                     type="email"
                     required
                     placeholder="your@email.com"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-sky-400/50 focus:bg-white/8"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black focus:border-sky-400/50 focus:bg-white/8"
                   />
                 </div>
               </div>
@@ -94,7 +94,7 @@ export function Contact() {
                   name="subject"
                   type="text"
                   placeholder="What's this about?"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-sky-400/50 focus:bg-white/8"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black focus:border-sky-400/50 focus:bg-white/8"
                 />
               </div>
 
@@ -108,7 +108,7 @@ export function Contact() {
                   required
                   rows={5}
                   placeholder="Tell me about your project, opportunity, or idea..."
-                  className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-sky-400/50 focus:bg-white/8"
+                  className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black focus:border-sky-400/50 focus:bg-white/8"
                 />
               </div>
 
@@ -135,7 +135,7 @@ export function Contact() {
                 rel={
                   social.href.startsWith("http") ? "noopener noreferrer" : undefined
                 }
-                className="glass-card glass-card-hover group flex items-center justify-between rounded-2xl px-5 py-4"
+                className="glass-card glass-card-hover group flex items-center justify-between rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black px-5 py-4"
               >
                 <div className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 ring-1 ring-inset ring-white/10">
@@ -150,7 +150,7 @@ export function Contact() {
                     </p>
                   </div>
                 </div>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
               </a>
             );
           })}

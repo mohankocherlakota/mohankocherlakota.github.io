@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t border-white/5 py-10">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6">
-        <div className="text-xs text-muted-foreground">
+        <div className="text-[13px] text-muted-foreground">
           <p>© {year} {hero.name}. Built with React, Vite & shadcn/ui.</p>
         </div>
         <div className="flex items-center gap-4">
@@ -20,7 +20,7 @@ export function Footer() {
                 rel={
                   social.href.startsWith("http") ? "noopener noreferrer" : undefined
                 }
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="rounded p-1 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Icon className="h-4 w-4" />
               </a>
