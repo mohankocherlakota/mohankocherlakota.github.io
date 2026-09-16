@@ -37,7 +37,7 @@ export function SectionRail() {
   return (
     <nav
       aria-label="Section progress"
-      className="fixed right-7 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 md:flex"
+      className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-1 md:flex"
     >
       <span className="absolute bottom-2 top-2 w-px bg-white/10" aria-hidden="true" />
       {navItems.map((item) => {
@@ -48,7 +48,7 @@ export function SectionRail() {
             href={`#${item.id}`}
             aria-label={`Scroll to ${item.label}`}
             aria-current={active ? "location" : undefined}
-            className="group relative flex h-6 w-6 items-center justify-center"
+            className="group relative flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <motion.span
               layout={!reduceMotion}

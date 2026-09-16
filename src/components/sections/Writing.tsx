@@ -23,13 +23,13 @@ export function Writing() {
               target="_blank"
               rel="noopener noreferrer"
               variants={cardReveal}
-              className="glass-card glass-card-hover group flex min-h-[250px] flex-col rounded-2xl p-6"
+              className="glass-card glass-card-hover group flex min-h-[250px] flex-col rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black p-6"
             >
               <div className="mb-5 flex items-start justify-between gap-3">
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-lime-300/10 text-lime-200 ring-1 ring-inset ring-lime-200/20 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">
                   <Icon className="h-5 w-5" />
                 </span>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
               </div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-lime-200/70">
                 {item.theme}

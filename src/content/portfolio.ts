@@ -236,6 +236,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Truth-Bounded Résumé Engine",
+    subtitle: "LangGraph · Claim Provenance",
+    description:
+      "LangGraph-orchestrated résumé builder that tailors content to a job description while staying strictly bounded to verified career facts — tracking claim provenance, flagging unsupported requirements, and requiring human approval before every export.",
+    stack: ["LangGraph", "MCP", "Hybrid RAG", "In Development"],
+    icon: ShieldCheck,
+  },
+  {
     title: "Answer Engine LLM",
     subtitle: "RAG · LLM Orchestration",
     description:
@@ -317,17 +325,33 @@ export const skillCategories: SkillCategory[] = [
     icon: Brain,
     skills: [
       "Multi-Agent Systems",
+      "LangGraph",
       "LLM Orchestration",
       "Fine-tuning",
-      "RAG",
+      "Hybrid RAG",
       "LangChain",
       "LlamaIndex",
       "OpenAI Codex",
-      "MCP",
+      "MCP / FastMCP",
       "Vector Databases",
       "Human-in-the-loop",
       "Prompt Engineering",
+    ],
+  },
+  {
+    title: "Evaluation & Observability",
+    accent: "from-sky-500/10 via-sky-500/[0.03] to-transparent",
+    iconBg: "bg-sky-500/15 text-sky-300",
+    icon: FileSearch,
+    skills: [
+      "DeepEval",
+      "RAGAS",
+      "Langfuse",
+      "LangSmith",
+      "OpenTelemetry",
       "LLM Evaluation",
+      "Claim Provenance",
+      "Human-Approval Gates",
     ],
   },
   {
@@ -361,9 +385,11 @@ export const skillCategories: SkillCategory[] = [
       "TypeScript",
       "JavaScript",
       "React",
+      "Next.js",
       "Node.js",
       "SQL",
       "FastAPI",
+      "Pydantic",
       "Flask",
       "R",
       "n8n",

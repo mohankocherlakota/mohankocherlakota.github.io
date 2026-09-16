@@ -36,7 +36,7 @@ export function Labs() {
                         {project.subtitle}
                       </p>
                     </div>
-                    <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+                    <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {project.description}
@@ -46,7 +46,7 @@ export function Labs() {
                       <Badge
                         key={tech}
                         variant="outline"
-                        className="rounded-md px-2 py-0.5 text-[11px]"
+                        className="rounded-md px-2 py-0.5 text-xs"
                       >
                         {tech}
                       </Badge>
@@ -65,7 +65,7 @@ export function Labs() {
           href="https://github.com/mohankocherlakota"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-foreground underline decoration-white/20 underline-offset-4 transition-colors hover:decoration-white"
+          className="rounded font-medium text-foreground underline decoration-white/20 underline-offset-4 transition-colors hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d7ff00] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
         >
           GitHub
         </a>

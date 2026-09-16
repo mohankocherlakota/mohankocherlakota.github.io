@@ -69,14 +69,14 @@ export function Experience() {
                     </h3>
                     <p className="mt-0.5 flex items-center gap-2 text-sm text-sky-300/90">
                       {role.company}
-                      <span className="text-muted-foreground/60">·</span>
+                      <span className="text-muted-foreground">·</span>
                       <span className="text-muted-foreground">{role.location}</span>
                     </p>
                   </div>
                 </div>
                 <Badge
                   variant="outline"
-                  className="rounded-full px-3 py-1 text-[11px]"
+                  className="rounded-full px-3 py-1 text-xs"
                 >
                   {role.period}
                 </Badge>
@@ -99,7 +99,7 @@ export function Experience() {
                   <Badge
                     key={tag}
                     variant="secondary"
-                    className="rounded-md px-2 py-0.5 text-[11px]"
+                    className="rounded-md px-2 py-0.5 text-xs"
                   >
                     {tag}
                   </Badge>

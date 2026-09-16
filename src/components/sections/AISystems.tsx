@@ -88,7 +88,7 @@ export function AISystems() {
 
             <div className="mt-5 flex flex-wrap gap-1.5">
               {featured.stack.map((item) => (
-                <Badge key={item} variant="outline" className="rounded-md px-2 py-0.5 text-[11px]">
+                <Badge key={item} variant="outline" className="rounded-md px-2 py-0.5 text-xs">
                   {item}
                 </Badge>
               ))}
@@ -120,7 +120,7 @@ export function AISystems() {
                     <p className="text-xs text-lime-200/75">{system.subtitle}</p>
                   </div>
                 </div>
-                <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+                <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
               </div>
 
               <ArchitectureDiagram steps={system.architecture} compact />
@@ -142,7 +142,7 @@ export function AISystems() {
 
               <div className="mt-5 flex flex-wrap gap-1.5">
                 {system.stack.map((item) => (
-                  <Badge key={item} variant="secondary" className="rounded-md px-2 py-0.5 text-[11px]">
+                  <Badge key={item} variant="secondary" className="rounded-md px-2 py-0.5 text-xs">
                     {item}
                   </Badge>
                 ))}
